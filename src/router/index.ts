@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "@viewRoot/HomeView.vue";
 import BoardView from "@board/BoardView.vue";
 import BoardWrite from "@board/BoardWirte.vue";
+import UserView from "@User/UserView.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/board_write",
 		name: "board_write",
 		component: BoardWrite,
+	},
+	{
+		path: "/userCreate",
+		name: "user_create",
+		component: UserView,
 	},
 ];
 
