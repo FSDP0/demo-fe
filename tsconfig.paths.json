@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@root/*": [
+                "./src/*"
+            ],
+            "@routerRoot/*":[
+                "./src/router/index.ts"
+            ],
+            "@compoRoot/*": [
+                "./src/components/*"
+            ],
+            "@viewRoot/*": [
+                "./src/views/*"
+            ],
+            "@assetsRoot/*": [
+                "./src/assets/*"
+            ],
+            "@user/*": [
+                "./src/views/User"
+            ],
+            "@board/*": [
+                "./src/views/Board"
+            ],
+        }
+    }
+}
