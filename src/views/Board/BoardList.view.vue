@@ -114,7 +114,10 @@
 				<div v-for="post in posts" :key="post.id">
 					<div class="num">{{ post.id }}</div>
 					<div class="title">
-						<a href="#">{{ post.boardTitle }}</a>
+						<router-link :to="{ path: './board_edit', params: { id: 3 } }">{{
+							post.boardTitle
+						}}</router-link>
+						<!-- <a href="#">{{ post.boardTitle }}</a> -->
 					</div>
 					<div class="writer">{{ post.boardTag }}</div>
 					<div class="date">{{ post.createdDate }}</div>
@@ -122,27 +125,22 @@
 				</div>
 			</div>
 			<div class="board_page">
-				<a href="#" class="bt first"></a>
-				<a href="#" class="bt prev"></a>
+				<a href="#" class="bt first">◀◀</a>
+				<a href="#" class="bt prev">◀</a>
 				<a href="#" class="num on">1</a>
 				<a href="#" class="num">2</a>
 				<a href="#" class="num">3</a>
 				<a href="#" class="num">4</a>
 				<a href="#" class="num">5</a>
-				<a href="#" class="bt next">></a>
-				<a href="#" class="bt last">>></a>
+				<a href="#" class="bt next">▶</a>
+				<a href="#" class="bt last">▶▶</a>
 			</div>
 			<div class="bt_wrap">
-				<!-- <a href="write.html" class="on">등록</a> -->
 				<router-link
 					class="on"
 					:to="{ path: './board_edit', params: { id: 3 } }"
 					>Enroll</router-link
 				>
-				<!-- <RouterLink class="on" :to=
-					>Enroll</RouterLink
-				> -->
-				<!--<a href="#">수정</a>-->
 			</div>
 		</div>
 	</div>

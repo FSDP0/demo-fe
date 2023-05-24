@@ -14,7 +14,6 @@
 								type="text"
 								id="postTitle"
 								placeholder="Input Title Here"
-								value="테스트"
 								required
 							/>
 						</dd>
@@ -43,43 +42,58 @@
 			</div>
 			<div class="bt_wrap">
 				<a href="#" class="on">Edit</a>
-				<router-link to="./board_list">Cancel</router-link>
+				<RouterLink to="./board_list">Cancel</RouterLink>
 			</div>
 		</div>
 	</div>
+	<!-- <div>{{ originData }}</div> -->
+	<!-- <div>{{ editData }}</div> -->
 </template>
 
 <script lang="ts">
 import axios from "axios";
 
 export default {
-	data() {
-		return {
-			originalData: {
-				id: Number,
-				boardTitle: String,
-				boardArticle: String,
-				boardTag: String,
-				createdDate: Date,
-				modDate: Date,
-			},
-			editData: {
-				boardTitle: "",
-				boardArticle: "",
-				boardTag: "",
-			},
-		};
-	},
+	// data:() {
+	// 	return {
+	// 		originalData: {
+	// 			id: Number,
+	// 			boardTitle: String,
+	// 			boardArticle: String,
+	// 			boardTag: String,
+	// 			createdDate: Date,
+	// 			modDate: Date,
+	// 		},
+	// 		editData: {
+	// 			boardTitle: "",
+	// 			boardArticle: "",
+	// 			boardTag: "",
+	// 		},
+	// 	};
+	// },
+	data: () => ({
+		originData: {
+			id: Date,
+			boardTitle: String,
+			boardArticle: String,
+			boardTag: String,
+		},
+		editData: {
+			boardTitle: "",
+			boardArticle: "",
+			boardTag: "",
+		},
+	}),
 	mounted() {
 		// axios
 		// 	.patch(`http://localhost:8000/board/edit/${this.editData}`, this.editData)
 		// 	.then(res => console.log(res));
-		axios.get(`http://localhost:8000/board/search/$`).then(res => {
-			this.originalData = res.data;
+		axios.get(`http://localhost:8000/board/search/:`).then(res => {
+			this.originData = res.data;
 		});
 	},
 	methods: {
-		patchDate() {
+		patchData() {
 			axios
 				.patch(
 					`http://localhost:8000/board/edit/${this.editData}`,
