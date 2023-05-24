@@ -14,6 +14,7 @@
 								type="text"
 								id="postTitle"
 								placeholder="Input Title Here"
+								v-bind:value="originData.boardTitle"
 								required
 							/>
 						</dd>
@@ -23,13 +24,23 @@
 					<dl>
 						<dt><h2>Tag</h2></dt>
 						<dd>
-							<input type="text" id="postTag" placeholder="Input Tag Here" />
+							<input
+								type="text"
+								id="postTag"
+								placeholder="Input Tag Here"
+								v-bind:value="originData.boardTag"
+							/>
 						</dd>
 					</dl>
 					<dl>
 						<dt><h2>Writer</h2></dt>
 						<dd>
-							<input type="text" id="postWriter" placeholder="Input Author" />
+							<input
+								type="text"
+								id="postWriter"
+								placeholder="Input Author"
+								v-bind:value="originData.boardWriter"
+							/>
 						</dd>
 					</dl>
 				</div>
@@ -37,66 +48,57 @@
 					<textarea
 						id="postArticle"
 						placeholder="Input Content Here"
+						v-bind:value="originData.boardArticle"
 					></textarea>
 				</div>
 			</div>
 			<div class="bt_wrap">
-				<a href="#" class="on">Edit</a>
-				<RouterLink to="./board_list">Cancel</RouterLink>
+				<button
+					class="on"
+					v-on:click="patchData"
+					@click="$router.push('../board_list')"
+				>
+					Post
+				</button>
+				<!-- <router-link to="../board_list">Cancel</router-link> -->
+				<button @click="$router.push('../board_list')">Cancel</button>
 			</div>
 		</div>
 	</div>
-	<!-- <div>{{ originData }}</div> -->
-	<!-- <div>{{ editData }}</div> -->
 </template>
 
 <script lang="ts">
 import axios from "axios";
 
 export default {
-	// data:() {
-	// 	return {
-	// 		originalData: {
-	// 			id: Number,
-	// 			boardTitle: String,
-	// 			boardArticle: String,
-	// 			boardTag: String,
-	// 			createdDate: Date,
-	// 			modDate: Date,
-	// 		},
-	// 		editData: {
-	// 			boardTitle: "",
-	// 			boardArticle: "",
-	// 			boardTag: "",
-	// 		},
-	// 	};
-	// },
+	props: ["id"],
 	data: () => ({
 		originData: {
-			id: Date,
+			id: Number,
 			boardTitle: String,
 			boardArticle: String,
 			boardTag: String,
+			boardWriter: String,
 		},
 		editData: {
 			boardTitle: "",
 			boardArticle: "",
 			boardTag: "",
+			boardWriter: "",
 		},
 	}),
 	mounted() {
-		// axios
-		// 	.patch(`http://localhost:8000/board/edit/${this.editData}`, this.editData)
-		// 	.then(res => console.log(res));
-		axios.get(`http://localhost:8000/board/search/:`).then(res => {
-			this.originData = res.data;
-		});
+		axios
+			.get(`http://localhost:8000/board/search/${this.$route.params.id}`)
+			.then(res => {
+				this.originData = res.data;
+			});
 	},
 	methods: {
 		patchData() {
 			axios
 				.patch(
-					`http://localhost:8000/board/edit/${this.editData}`,
+					`http://localhost:8000/board/edit/${this.$route.params.id}`,
 					this.editData,
 				)
 				.then(res => console.log(res));
@@ -106,6 +108,6 @@ export default {
 </script>
 
 <style>
-@import url("../../styles/css.css");
+@import url("../../styles/defaultCss.css");
 @import url("../../styles/boardWrite.css");
 </style>

@@ -100,7 +100,7 @@
 	<div class="board_wrap">
 		<div class="board_title">
 			<strong>OSC Korea</strong>
-			<p>Posted Board List</p>
+			<p>Board List</p>
 		</div>
 		<div class="board_list_wrap">
 			<div class="board_list">
@@ -114,10 +114,13 @@
 				<div v-for="post in posts" :key="post.id">
 					<div class="num">{{ post.id }}</div>
 					<div class="title">
-						<router-link :to="{ path: './board_edit', params: { id: 3 } }">{{
-							post.boardTitle
-						}}</router-link>
-						<!-- <a href="#">{{ post.boardTitle }}</a> -->
+						<router-link
+							:to="{
+								path: `./board_view/${Number(post.id)}`,
+								params: { id: Number(post.id) },
+							}"
+							>{{ post.boardTitle }}</router-link
+						>
 					</div>
 					<div class="writer">{{ post.boardTag }}</div>
 					<div class="date">{{ post.createdDate }}</div>
@@ -136,17 +139,14 @@
 				<a href="#" class="bt last">▶▶</a>
 			</div>
 			<div class="bt_wrap">
-				<router-link
-					class="on"
-					:to="{ path: './board_edit', params: { id: 3 } }"
-					>Enroll</router-link
-				>
+				<router-link class="on" to="./board_write">Enroll</router-link>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
+/* eslint-disable */
 import axios from "axios";
 
 export default {
@@ -173,7 +173,7 @@ export default {
 </script>
 
 <style>
-@import url("../../styles/css.css");
+@import url("../../styles/defaultCss.css");
 @import url("../../styles/boardList.css");
 @import url("../../styles/boardPage.css");
 </style>

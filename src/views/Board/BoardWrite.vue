@@ -1,39 +1,4 @@
 <template>
-	<!-- <div class="board-write">
-		<hr />
-		<main>
-			<form class="write-article" method="POST" @submit.prevent="createPost">
-				<label for="ftitle">Title</label><br />
-				<input
-					type="text"
-					id="postTitle"
-					placeholder="Input Title Here"
-					v-model="postData.boardTitle"
-					required
-				/>
-				<hr style="width: 80%" />
-				<label for="farticle">Article</label><br />
-				<textarea
-					cols="40"
-					rows="10"
-					id="article"
-					placeholder="Input Article Here"
-					v-model="postData.boardArticle"
-				></textarea>
-				<br />
-				<label for="ftags">Tags</label><br />
-				<input
-					type="text"
-					id="tag"
-					placeholder="Input Tags Here"
-					v-model="postData.boardTag"
-				/>
-				<br />
-				<input type="submit" value="Submit" />
-				<input type="reset" value="Cancel" />
-			</form>
-		</main>
-	</div> -->
 	<div class="board_wrap">
 		<div class="board_title">
 			<strong>OSC Korea</strong>
@@ -70,7 +35,12 @@
 					<dl>
 						<dt><h2>Writer</h2></dt>
 						<dd>
-							<input type="text" id="postWriter" placeholder="Input Author" />
+							<input
+								type="text"
+								id="postWriter"
+								placeholder="Input Author"
+								v-model="postData.boardWriter"
+							/>
 						</dd>
 					</dl>
 				</div>
@@ -83,8 +53,15 @@
 				</div>
 			</div>
 			<div class="bt_wrap">
-				<a href="view.html" class="on">Post</a>
-				<RouterLink to="./board_list">Cancel</RouterLink>
+				<!-- <a href="view.html" class="on">Post</a> -->
+				<button
+					class="on"
+					v-on:click="createPost"
+					@click="$router.push('../board_list')"
+				>
+					Post
+				</button>
+				<router-link to="../board_list">Cancel</router-link>
 			</div>
 		</div>
 	</div>
@@ -100,6 +77,7 @@ export default {
 				boardTitle: "",
 				boardArticle: "",
 				boardTag: "",
+				boardWriter: "",
 			},
 		};
 	},
@@ -114,6 +92,6 @@ export default {
 </script>
 
 <style>
-@import url("../../styles/css.css");
+@import url("../../styles/defaultCss.css");
 @import url("../../styles/boardWrite.css");
 </style>

@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import BoardList from "../views/Board/BoardList.view.vue";
-import BoardView from "../views/Board/BoardView.view.vue";
-import BoardWrite from "../views/Board/BoardWrite.view.vue";
-import BoardEdit from "../views/Board/BoardEdit.view.vue";
-import UserView from "../views/User/UserView.vue";
-import HomeNavView from "../views/HomeNavView.vue";
+import BoardList from "../views/Board/BoardList.vue";
+import BoardWrite from "../views/Board/BoardWrite.vue";
+import BoardView from "../views/Board/BoardView.vue";
+import BoardEdit from "../views/Board/BoardEdit.vue";
+// import UserView from "../views/User/UserView.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -28,30 +27,27 @@ const routes: Array<RouteRecordRaw> = [
 		component: BoardList,
 	},
 	{
-		path: "/board_view",
-		name: "board_view",
-		component: BoardView,
-	},
-	{
 		path: "/board_write",
 		name: "board_write",
 		component: BoardWrite,
 	},
 	{
-		path: "/board_edit",
+		path: "/board_edit/:id",
 		name: "board_edit",
 		component: BoardEdit,
+		props: true,
 	},
 	{
-		path: "/user_ceate",
-		name: "user",
-		component: UserView,
+		path: "/board_view/:id",
+		name: "board_view",
+		component: BoardView,
+		props: true,
 	},
-	{
-		path: "/nav",
-		name: "nav",
-		component: HomeNavView,
-	},
+	// {
+	// 	path: "/user_ceate",
+	// 	name: "user",
+	// 	component: UserView,
+	// },
 ];
 
 const router = createRouter({
