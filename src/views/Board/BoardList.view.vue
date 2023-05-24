@@ -99,52 +99,26 @@
 
 	<div class="board_wrap">
 		<div class="board_title">
-			<strong>공지사항</strong>
-			<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+			<strong>OSC Korea</strong>
+			<p>Posted Board List</p>
 		</div>
 		<div class="board_list_wrap">
 			<div class="board_list">
 				<div class="top">
-					<div class="num">번호</div>
-					<div class="title">제목</div>
-					<div class="writer">글쓴이</div>
-					<div class="date">작성일</div>
-					<div class="count">조회</div>
+					<div class="num">No.</div>
+					<div class="title">Title</div>
+					<div class="writer">Writer</div>
+					<div class="date">Created Date</div>
+					<div class="count">Modified Date</div>
 				</div>
-				<div>
-					<div class="num">5</div>
-					<div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-					<div class="writer">김이름</div>
-					<div class="date">2021.1.15</div>
-					<div class="count">33</div>
-				</div>
-				<div>
-					<div class="num">4</div>
-					<div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-					<div class="writer">김이름</div>
-					<div class="date">2021.1.15</div>
-					<div class="count">33</div>
-				</div>
-				<div>
-					<div class="num">3</div>
-					<div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-					<div class="writer">김이름</div>
-					<div class="date">2021.1.15</div>
-					<div class="count">33</div>
-				</div>
-				<div>
-					<div class="num">2</div>
-					<div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-					<div class="writer">김이름</div>
-					<div class="date">2021.1.15</div>
-					<div class="count">33</div>
-				</div>
-				<div>
-					<div class="num">1</div>
-					<div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-					<div class="writer">김이름</div>
-					<div class="date">2021.1.15</div>
-					<div class="count">33</div>
+				<div v-for="post in posts" :key="post.id">
+					<div class="num">{{ post.id }}</div>
+					<div class="title">
+						<a href="#">{{ post.boardTitle }}</a>
+					</div>
+					<div class="writer">{{ post.boardTag }}</div>
+					<div class="date">{{ post.createdDate }}</div>
+					<div class="date">{{ post.modDate ? post.modDate : "-" }}</div>
 				</div>
 			</div>
 			<div class="board_page">
@@ -159,7 +133,10 @@
 				<a href="#" class="bt last">>></a>
 			</div>
 			<div class="bt_wrap">
-				<a href="write.html" class="on">등록</a>
+				<!-- <a href="write.html" class="on">등록</a> -->
+				<RouterLink class="on" to="{path:'./board_edit',params:{name: 3}}"
+					>Enroll</RouterLink
+				>
 				<!--<a href="#">수정</a>-->
 			</div>
 		</div>
@@ -191,13 +168,35 @@ export default {
 	},
 };
 </script> -->
+<script lang="ts">
+import axios from "axios";
 
-<!-- <script lang="js">
-var div = document.getElementById("mainWrapper");
-console.log(div);
-</script> -->
+export default {
+	data() {
+		return {
+			posts: [
+				{
+					id: Number,
+					boardTitle: String,
+					boardArticle: String,
+					boardTag: String,
+					createdDate: Date,
+					modDate: Date,
+				},
+			],
+		};
+	},
+	mounted() {
+		axios.get("http://localhost:8000/board/search").then(res => {
+			this.posts = res.data;
+		});
+	},
+};
+</script>
 
 <style>
+@import url("../../styles/css.css");
+@import url("../../styles/boardList.css");
 /* .example {
 	color: red;
 }
