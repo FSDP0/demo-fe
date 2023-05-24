@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "@viewRoot/HomeView.vue";
-import BoardView from "@board/BoardView.vue";
-import BoardWrite from "@board/BoardWirte.vue";
-import UserView from "@User/UserView.vue";
+import HomeView from "../views/HomeView.vue";
+import BoardList from "../views/Board/BoardList.view.vue";
+import BoardView from "../views/Board/BoardView.view.vue";
+import BoardWrite from "../views/Board/BoardWrite.view.vue";
+import BoardEdit from "../views/Board/BoardEdit.view.vue";
+import UserView from "../views/User/UserView.vue";
+import HomeNavView from "../views/HomeNavView.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -20,8 +23,13 @@ const routes: Array<RouteRecordRaw> = [
 			import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
 	},
 	{
-		path: "/board",
-		name: "board",
+		path: "/board_list",
+		name: "board_list",
+		component: BoardList,
+	},
+	{
+		path: "/board_view",
+		name: "board_view",
 		component: BoardView,
 	},
 	{
@@ -30,9 +38,19 @@ const routes: Array<RouteRecordRaw> = [
 		component: BoardWrite,
 	},
 	{
-		path: "/userCreate",
-		name: "user_create",
+		path: "/board_edit",
+		name: "board_edit",
+		component: BoardEdit,
+	},
+	{
+		path: "/user_ceate",
+		name: "user",
 		component: UserView,
+	},
+	{
+		path: "/nav",
+		name: "nav",
+		component: HomeNavView,
 	},
 ];
 

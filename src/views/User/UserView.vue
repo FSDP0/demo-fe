@@ -1,5 +1,6 @@
 <template>
 	<div class="user">
+		<h1>hello</h1>
 		<form method="POST">
 			<label for="fid">User ID</label>
 			<input placeholder="User ID Input Here" />

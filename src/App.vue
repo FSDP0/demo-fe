@@ -4,6 +4,13 @@
 		<router-link to="/about">About</router-link> |
 		<router-link to="/board">Board</router-link>
 	</nav> -->
+	<!-- <nav>
+		<h1>Head</h1>
+		
+	</nav> -->
+	<!-- <div class="header">
+		<h1>OSC Korea</h1>
+	</div> -->
 	<router-view />
 </template>
 
@@ -28,4 +35,11 @@ nav a {
 nav a.router-link-exact-active {
 	color: #42b983;
 }
+
+/* .header {
+	height: 100px;
+	width: 100%;
+	background-color: bisque;
+	padding: 5px;
+} */
 </style>
