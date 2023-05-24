@@ -14,6 +14,7 @@
 								type="text"
 								id="postTitle"
 								placeholder="Input Title Here"
+								value="테스트"
 								required
 							/>
 						</dd>
@@ -42,7 +43,7 @@
 			</div>
 			<div class="bt_wrap">
 				<a href="#" class="on">Edit</a>
-				<RouterLink to="./board_list">Cancel</RouterLink>
+				<router-link to="./board_list">Cancel</router-link>
 			</div>
 		</div>
 	</div>

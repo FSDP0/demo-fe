@@ -41,6 +41,7 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/board_edit",
 		name: "board_edit",
 		component: BoardEdit,
+		props: true,
 	},
 	{
 		path: "/user_ceate",
